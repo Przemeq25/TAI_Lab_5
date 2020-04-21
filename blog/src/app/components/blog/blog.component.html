@@ -13,9 +13,15 @@
 <body>
     <div class="content">
         <div class="container">
-          <div *ngFor="let item of items$ | filter: filterText">
-              <blog-item [image]="item.url" [text]="item.title">
-          </blog-item>
+
+          <div class="row">
+
+            <div *ngFor="let item of items$ | filter: filterText">
+                <blog-item [id]="item.id" [image]="item.image" [text]="item.text">
+            </blog-item>
+
+            </div>
+
         </div>
 
 

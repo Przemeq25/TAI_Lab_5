@@ -25,9 +25,8 @@ const routes: Routes = [
   },
   {
     path: 'blog/detail/:id',
-    component: BlogItemDetailsComponent
+    component: BlogItemDetailsComponent,
   },
-
 
 ];
 

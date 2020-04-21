@@ -8,6 +8,7 @@ templateUrl: './blog.component.html',
 })
 export class BlogComponent implements OnInit {
   @Input() filterText: string;
+  @Input() id: number;
   public items$: any;
 
   constructor(private service: DataService) {
