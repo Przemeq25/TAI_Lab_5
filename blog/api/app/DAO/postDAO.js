@@ -24,6 +24,7 @@ async function query() {
     }
   }
 }
+
 async function get(id) {
   return PostModel.findOne({_id: id}).then(function (result) {
     if (result) {

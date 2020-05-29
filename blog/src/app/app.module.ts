@@ -21,11 +21,9 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { TextFormatDirective } from './directives/text-format.directive';
 import { SelectizeComponent } from './components/selectize/selectize.component';
 import { AddPostComponent } from './components/add-post/add-post.component';
-import {AuthService} from './services/auth.service';
-import {HTTP_INTERCEPTORS, HttpClientModule} from
-    '@angular/common/http';
-import {AuthInterceptor} from
-    './services/auth.interceptor';
+import {AuthService} from './services/auth/auth.service';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {AuthInterceptor} from './services/auth/auth.interceptor';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 
@@ -57,15 +55,11 @@ import { SignupComponent } from './components/signup/signup.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    },
-
-    DataService, AuthService
-  ],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }, DataService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

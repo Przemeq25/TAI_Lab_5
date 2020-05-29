@@ -17,11 +17,15 @@
     margin: auto;
 }
 
-nav {
+.nav {
     display: flex;
     justify-content: space-around;
 }
 
+.nav li {
+  color:white;
+  cursor:pointer;
+}
 .navigation h1 {
     color: white;
 }

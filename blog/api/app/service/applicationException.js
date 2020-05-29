@@ -1,6 +1,7 @@
 'use strict';
 
-function ApplicationException(error, message) {
+function ApplicationException(error, message)
+{
   this.error = error;
   this.message = message;
 }
@@ -14,14 +15,17 @@ export default {
   METHOD_NOT_ALLOWED: {message: 'METHOD_NOT_ALLOWED', code: 405},
   PRECONDITION_FAILED: {message: 'PRECONDITION_FAILED', code: 412},
   CONFLICT: {message: 'CONFLICT', code: 409},
-  is: function (error, errorCode) {
+  is: function (error, errorCode)
+  {
     return error instanceof ApplicationException && (null == errorCode || error.error === errorCode);
   },
-  new: function (code, message) {
+  new: function (code, message)
+  {
     return new ApplicationException(code, message);
   },
-  errorHandler: function (error, response) {
-    if (error instanceof ApplicationException) {
+  errorHandler: function (error, response)
+  {
+    if (error instanceof  ApplicationException) {
       response.status(error.error.code).send(error.message || error.error.message);
     } else {
       console.error(error && error.stack || error);

@@ -16,6 +16,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(cors());
 
+
+
 mongoose.connect(config.databaseUrl, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true}, (error) => {
   if (error) {
     console.error(error);
@@ -32,7 +34,11 @@ process.on('SIGINT', () => {
   });
 });
 
-routes(app);
-app.listen(config.port, () => {
+
+app.get('/*', function (req, res) {
+  res.sendFile(__dirname + '/public/index.html');
+});
+
+app.listen(process.env.PORT || config.port, () => {
   console.info(`Server is running at ${config.port}`)
 });

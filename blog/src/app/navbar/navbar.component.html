@@ -7,7 +7,10 @@
                 <li><a class="nav-link active" [routerLink]="['/contact']">Kontakt</a></li>
                 <li><a class="nav-link active" [routerLink]="['/blog']">Blog</a></li>
                 <li><a class="nav-link active" [routerLink]="['/add-post']">Dodaj post</a></li>
-                <li><button (click)="logOut()" class="dropdown-item">Wyloguj</button></li>
+                <li class="nav-link" routerLink="/login" *ngIf="!authService.currentUser">Zaloguj</li>
+                <li><button class="nav-link" (click)="logOut()" *ngIf="authService.currentUser">Wyloguj</button></li>
+                <li class="nav-link" routerLink="/signup" *ngIf="!authService.currentUser">Zarejestruj</li>
+
             </ul>
         </nav>
     </div>

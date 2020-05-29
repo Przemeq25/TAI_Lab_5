@@ -1,23 +1,36 @@
 'use strict';
-import business from '../business/business.container';
 
-const postEndpoint = (router) => {
-  router.get('/api/posts', async (request, response, next) => {
-    try {
-      let result = await business(request).getPostManager().query();
-      response.status(200).send(result);
-    } catch (error) {
-      console.log(error);
-    }
-  });
+import postDAO from '../DAO/postDAO';
 
-  router.post('/api/posts', async (request, response, next) => {
-    try {
-      let result = await business(request).getPostManager().createNewOrUpdate(request.body);
-      response.status(200).send(result);
-    } catch (error) {
-      console.log(error);
+function create(context) {
+  async function query() {
+    let result = postDAO.query();
+    if (result) {
+      return result;
     }
-  });
+  }
+
+  async function get(id) {
+    let result = await postDAO.get(id);
+    if (result) {
+      return result;
+    }
+  }
+
+  async function createNewOrUpdate(data) {
+    let result = await postDAO.createNewOrUpdate(data);
+    if (result) {
+      return result;
+    }
+  }
+
+  return {
+    query: query,
+    get: get,
+    createNewOrUpdate: createNewOrUpdate,
+  };
+}
+
+export default {
+  create: create
 };
-export default postEndpoint;
